@@ -33,8 +33,13 @@ public class DiskFileExplorer {
                     System.out.println("Dossier: " + files[i].getAbsolutePath());
                     this.dircount++;
                 } else {
+                	/* Dans ce cas là on est bien en présence d'un fichier */
                     System.out.println("  Fichier: " + files[i].getName());
                     this.filecount++;
+                    /* On filtre les fichiers csv */
+                    if(( files[i].getName() ).endsWith(".csv")==true) {
+                    	System.out.println("un fichier csv !");
+                    }
                 }
                 if (files[i].isDirectory() == true && this.recursivePath == true) {
                     this.listDirectory(files[i].getAbsolutePath());
