@@ -1,10 +1,12 @@
 package fr.findCsvFile;
 
-import fr.findCsvFile.service.DiskFileExplorer;
+import java.io.FileNotFoundException;
+
+import fr.findCsvFile.DAO.DiskFileExplorer;
 
 public class Run {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		String pathToExplore = "C:\\Users\\amounier\\Desktop\\Rigowork\\data\\data";
 		DiskFileExplorer diskFileExplorer = new DiskFileExplorer(pathToExplore, true);
 		Long start = System.currentTimeMillis();
