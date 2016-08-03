@@ -7,26 +7,28 @@ import com.opencsv.*;
 import org.apache.poi.*;
 import org.apache.poi.ss.usermodel.Workbook;
 
-public class DiskFileExplorer {
+public class FindEmail {
  
     private String initialpath = "";
     private Boolean recursivePath = false;
     public int filecount = 0;
     public int dircount = 0;
     public final static char SEPARATOR = ';';
+    private String email = "";
  
 /**
  * Constructeur
  * @param path chemin du répertoire
  * @param subFolder analyse des sous dossiers
  */
-    public DiskFileExplorer(String path, Boolean subFolder) {
+    public FindEmail(String path, Boolean subFolder, String email) {
         super();
         this.initialpath = path;
         this.recursivePath = subFolder;
+        this.email = email;
     }
  
-    public void list() throws FileNotFoundException {
+    public void run() throws FileNotFoundException {
         this.findIt(this.initialpath);
     }
  
@@ -52,6 +54,7 @@ public class DiskFileExplorer {
                     	try {
 							while ((nextLine = csvReader.readNext()) != null) {
 								int size = nextLine.length;
+
 								
 								// ligne vide
 								if (size == 0) {
@@ -68,15 +71,11 @@ public class DiskFileExplorer {
 								    continue;
 								}
 								
-								if(nextLine[4].equals("bernardmaxime@yahoo.fr")) {
-									System.out.println("got bernardmaxime@yahoo.fr");
+								
+								if(nextLine[4].equals(this.email)) {
+									System.out.println("Here is "+this.email);
 								}
-								if(nextLine[4].equals("lila.sid@libertysurf.fr")) {
-									System.out.println("GOT lila.sid@libertysurf.fr !");
-								}
-								if(nextLine[4].equals("pascal.bonus@cegetel.net")) {
-									System.out.println("GOT pascal.bonus@cegetel.net !");
-								}
+								
 							}
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
